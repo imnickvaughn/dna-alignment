@@ -1,28 +1,9 @@
 import React from 'react'
 import styles from '../styles/results.module.css'
 import { CircularProgress, Paper } from '@material-ui/core'
-import Scrollbars from 'react-custom-scrollbars';
 
 // This is where we display the results from our sequence query.
 export default function ResultsComponent(props) {
-
-    // const renderThumb = ({ style, ...props }) => {
-    //     const thumbStyle = {
-    //         height: '50vh',
-    //         width: "50vw",
-    //         borderRadius: 6,
-    //         backgroundColor: 'rgba(35, 49, 86, 0.8)'
-    //     };
-    //     return <div style={{ ...style, ...thumbStyle }} {...props} />;
-    // };
-
-    // const CustomScrollbars = props => (
-    //     <Scrollbars
-    //         renderThumbHorizontal={renderThumb}
-    //         renderThumbVertical={renderThumb}
-    //         {...props}
-    //     />
-    // );
 
     // Here is where we display the search result.
     // A temporary search result state is needed before the results have come from the server.
@@ -61,17 +42,13 @@ export default function ResultsComponent(props) {
         <>
             <div className="columnContainer">
                 <h1> BLAST REPORT</h1>
-                {/* <div className={styles.listScroll}> */}
-                <Scrollbars style={{ height: '79vh' }} autoHide autoHideTimeout={500} autoHideDuration={200}>
-                    {Object.values(props.matches).map((seq, index) => (
-                        <React.Fragment key={index} >
-                            <Paper elevation={3} className={styles.result}>
-                                {isLoading(seq, index)}
-                            </Paper>
-                        </React.Fragment>
-                    ))}
-                </ Scrollbars>
-                {/* </div> */}
+                {Object.values(props.matches).map((seq, index) => (
+                    <React.Fragment key={index} >
+                        <Paper elevation={3} className={styles.result}>
+                            {isLoading(seq, index)}
+                        </Paper>
+                    </React.Fragment>
+                ))}
             </div>
         </>
     )
